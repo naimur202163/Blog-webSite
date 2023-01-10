@@ -5,8 +5,8 @@ import Login from "./components/account/Login";
 
 export default function App() {
   return (
-    <div>
-      <Login/>
+    <div style={{ marginTop: "64px" }}>
+      <Login />
     </div>
   );
 }
