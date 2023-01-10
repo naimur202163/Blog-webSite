@@ -47,19 +47,33 @@ const SignUpButton = styled(Button)`
   box-shadow: 0 2px 4px 0 rgb(0 0 0/ 20%);
 `;
 
+const signupInitialValues = {
+  name: "",
+  username: "",
+  password: "",
+};
+
 export default function Login() {
   const [accounte, setAccounte] = useState("login");
-
+  const [signup, setSignup] = useState(signupInitialValues);
+  // Submit handeler
+  const onInputChange = (e) => {
+    setSignup({ ...signup, [e.target.name]: e.target.value });
+  };
+  const signupUser=()=>{
+    
+  }
   const toggleSignUp = () => {
-    accounte == "login" ? setAccounte("signup") : setAccounte("login");
+    accounte === "login" ? setAccounte("signup") : setAccounte("login");
   };
   const imageURL = ` https://i.ibb.co/3hNXKq6/logo-blog-sesta-trasparente.png`;
+  console.log(signup);
   return (
     <Components>
       <Box>
         <Image src={imageURL} alt="login" />
 
-        {accounte == "login" ? (
+        {accounte === "login" ? (
           <Wrapper>
             <TextField
               id="standard-basic"
@@ -83,22 +97,30 @@ export default function Login() {
         ) : (
           <Wrapper>
             <TextField
+              onChange={(e) => onInputChange(e)}
+              name="name"
               id="standard-basic"
               label="Enter  Name"
               variant="standard"
             />
             <TextField
+              name="username"
+              onChange={(e) => onInputChange(e)}
               id="standard-basic"
               label="Enter User Name"
               variant="standard"
             />
             <TextField
+              name="password"
+              onChange={(e) => onInputChange(e)}
               id="standard-basic"
               label="Password"
               variant="standard"
             />
 
-            <SignUpButton variant="contained">SignUp</SignUpButton>
+            <SignUpButton onClick={() => signupUser()} variant="contained">
+              SignUp
+            </SignUpButton>
 
             <Text style={{ textAlign: "center" }} sx={{ mt: 2 }} variant="p">
               OR
